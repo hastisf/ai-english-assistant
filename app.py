@@ -139,10 +139,52 @@ st.divider()
 # ==========================================
 # Footer
 # ==========================================
-st.markdown("""
-<div class="footer">
+st.markdown(
+    """
+    <style>
+    .footer-container {
+        text-align: center;
+        color: #64748B;
+        font-size: 13px;
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid #E2E8F0;
+    }
 
-© 2026 <b>SWIM</b> • Powered by Google Gemini
+    .footer-title{
+        font-weight:600;
+        margin-bottom:6px;
+    }
 
-</div>
-""", unsafe_allow_html=True)
+    .footer-links a {
+        color: #2563EB;
+        text-decoration: none;
+        font-weight: 600;
+        margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+    </style>
+
+    <div class="footer-container">
+
+        <div class="footer-title">
+            SWIM • Speaking & Writing Improvement Mate
+        </div>
+
+        <div>
+            Developed by Hasti Sri Fatmawati
+        </div>
+
+        <div class="footer-links" style="margin-top:10px;">
+            <a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a> •
+            <a href="https://github.com/hastisf/" target="_blank">GitHub</a>
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
