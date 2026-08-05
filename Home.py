@@ -27,16 +27,18 @@ st.markdown("""
 }
 
 .title{
-    font-size:30px;
+    font-size:34px;
     font-weight:700;
     color:#0F172A;
-    margin-bottom:5px;
+    margin-top:12px;
+    margin-bottom:0;
 }
 
 .subtitle{
-    font-size:18px;
-    color:#6B7280;
+    font-size:20px;
+    color:#64748B;
     line-height:1.7;
+    margin-top:18px;
 }
 
 .feature-box{
@@ -46,31 +48,59 @@ st.markdown("""
     padding:20px;
 }
 
+.footer-container {
+    text-align:center;
+    color:#64748B;
+    font-size:13px;
+    margin-top:40px;
+    padding-top:20px;
+    padding-bottom:20px;
+    border-top:1px solid #E2E8F0;
+}
+
+.footer-links a{
+    color:#2563EB;
+    text-decoration:none;
+    font-weight:600;
+    margin:0 10px;
+}
+
+.footer-links a:hover{
+    text-decoration:underline;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
 # Header
 # ==========================================
-col_logo, col_text = st.columns([1, 6])
+
+col_logo, col_title = st.columns([1, 6], vertical_alignment="center")
 
 with col_logo:
     st.image(logo, width=90)
 
-with col_text:
+with col_title:
     st.markdown("""
-<div class="title">
-Speaking & Writing Improvement Mate
-</div>
+    <div class="title">
+        Speaking & Writing Improvement Mate
+    </div>
+    """, unsafe_allow_html=True)
 
+st.markdown("""
 <div class="subtitle">
-Improve your English with AI-powered writing and speaking feedback
+Improve your English writing and speaking with instant AI-powered feedback.
 </div>
 """, unsafe_allow_html=True)
 
 st.divider()
 
-st.markdown("### Welcome")
+# ==========================================
+# Welcome
+# ==========================================
+
+st.markdown("## Welcome")
 
 st.write("""
 **SWIM** is an AI-powered English learning assistant designed to help you
@@ -82,7 +112,11 @@ and overall communication through Google Gemini.
 
 st.divider()
 
-st.markdown("### Features")
+# ==========================================
+# Features
+# ==========================================
+
+st.markdown("## Features")
 
 col1, col2 = st.columns(2)
 
@@ -90,7 +124,7 @@ with col1:
     st.markdown("""
 <div class="feature-box">
 
-##### 📝 Writing Evaluation
+### 📝 Writing Evaluation
 
 - Grammar correction
 - Vocabulary suggestions
@@ -105,7 +139,7 @@ with col2:
     st.markdown("""
 <div class="feature-box">
 
-##### 🎙️ Speaking Evaluation
+### 🎙️ Speaking Evaluation
 
 - Pronunciation feedback
 - Fluency assessment
@@ -116,39 +150,27 @@ with col2:
 </div>
 """, unsafe_allow_html=True)
 
+# ==========================================
+# Footer
+# ==========================================
+
 st.markdown(
-    """
-<style>
-.footer-container {
-    text-align: center;
-    color: #64748B;
-    font-size: 13px;
-    margin-top: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top: 1px solid #E2E8F0;
-}
-
-.footer-links a {
-    color: #2563EB;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 10px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-</style>
-
+"""
 <div class="footer-container">
 
 <strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio
 
 <div class="footer-links" style="margin-top:8px;">
-<a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a>
+<a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">
+LinkedIn
+</a>
+
 •
-<a href="https://github.com/hastisf/" target="_blank">GitHub</a>
+
+<a href="https://github.com/hastisf/" target="_blank">
+GitHub
+</a>
+
 </div>
 
 </div>
