@@ -152,11 +152,6 @@ st.markdown(
         border-top: 1px solid #E2E8F0;
     }
 
-    .footer-title{
-        font-weight:600;
-        margin-bottom:6px;
-    }
-
     .footer-links a {
         color: #2563EB;
         text-decoration: none;
@@ -170,20 +165,16 @@ st.markdown(
     </style>
 
     <div class="footer-container">
+        <div><strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio</div>
 
-        <div class="footer-title">
+        <div style="margin-top:6px;">
             SWIM • Speaking & Writing Improvement Mate
-        </div>
-
-        <div>
-            Developed by Hasti Sri Fatmawati
         </div>
 
         <div class="footer-links" style="margin-top:10px;">
             <a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a> •
             <a href="https://github.com/hastisf/" target="_blank">GitHub</a>
         </div>
-
     </div>
     """,
     unsafe_allow_html=True,
