@@ -27,7 +27,7 @@ st.markdown("""
 }
 
 .title{
-    font-size:30px;
+    font-size:32px;
     font-weight:700;
     color:#0F172A;
     margin-bottom:5px;
@@ -50,12 +50,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# Header
+# Header (Logo Diperbesar)
 # ==========================================
-col_logo, col_text = st.columns([1, 6])
+col_logo, col_text = st.columns([1, 4], vertical_alignment="center")
 
 with col_logo:
-    st.image(logo, width=90)
+    st.image(logo, width=150)  # Ukuran logo diperbesar dari 90 ke 150
 
 with col_text:
     st.markdown("""
@@ -116,6 +116,9 @@ with col2:
 </div>
 """, unsafe_allow_html=True)
 
+# ==========================================
+# Footer
+# ==========================================
 st.markdown(
     """
 <style>
@@ -153,5 +156,5 @@ st.markdown(
 
 </div>
 """,
-unsafe_allow_html=True
+    unsafe_allow_html=True
 )
