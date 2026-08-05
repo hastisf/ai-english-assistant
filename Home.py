@@ -55,7 +55,7 @@ st.markdown("""
 col_logo, col_text = st.columns([1, 6])
 
 with col_logo:
-    st.image(logo, width=100)
+    st.image(logo, width=120)
 
 with col_text:
     st.markdown("""
