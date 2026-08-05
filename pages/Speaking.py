@@ -11,6 +11,7 @@ st.markdown(
     """, 
     unsafe_allow_html=True
 )
+
 audio_file = st.audio_input("Record your speaking")
 
 if audio_file is not None:
@@ -37,12 +38,6 @@ if audio_file is not None:
 
         # 1. Baca byte dari file audio
         audio_bytes = audio_file.getvalue()
-        
-        # Debug
-        with open("debug.wav", "wb") as f:
-            f.write(audio_bytes)
-            
-        st.success("Audio saved as debug.wav.")
         
         st.write("Mime Type:", audio_file.type)
         st.write("Audio Size:", len(audio_bytes), "bytes")
