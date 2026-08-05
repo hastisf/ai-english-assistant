@@ -27,19 +27,16 @@ st.markdown("""
 }
 
 .title{
-    font-size:26px;
+    font-size:30px;
     font-weight:700;
     color:#0F172A;
-    line-height:1.3;
-    margin-top:8px;
-    margin-bottom:0;
+    margin-bottom:5px;
 }
 
 .subtitle{
     font-size:18px;
-    color:#64748B;
-    line-height:1.6;
-    margin-top:16px;
+    color:#6B7280;
+    line-height:1.7;
 }
 
 .feature-box{
@@ -49,73 +46,43 @@ st.markdown("""
     padding:20px;
 }
 
-.footer-container{
-    text-align:center;
-    color:#64748B;
-    font-size:13px;
-    margin-top:40px;
-    padding-top:20px;
-    padding-bottom:20px;
-    border-top:1px solid #E2E8F0;
-}
-
-.footer-links a{
-    color:#2563EB;
-    text-decoration:none;
-    font-weight:600;
-    margin:0 10px;
-}
-
-.footer-links a:hover{
-    text-decoration:underline;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
 # Header
 # ==========================================
-
-col_logo, col_title = st.columns([1.2, 4.8], vertical_alignment="center")
+col_logo, col_text = st.columns([1, 6])
 
 with col_logo:
-    st.image(logo, width=100)
+    st.image(logo, width=90)
 
-with col_title:
+with col_text:
     st.markdown("""
-    <div class="title">
-        Speaking & Writing Improvement Mate
-    </div>
-    """, unsafe_allow_html=True)
+<div class="title">
+Speaking & Writing Improvement Mate
+</div>
 
-st.markdown("""
 <div class="subtitle">
-Improve your English writing and speaking with instant AI-powered feedback.
+Improve your English with AI-powered writing and speaking feedback
 </div>
 """, unsafe_allow_html=True)
 
 st.divider()
 
-# ==========================================
-# Welcome
-# ==========================================
-
-st.markdown("## 👋 Welcome")
+st.markdown("## Welcome")
 
 st.write("""
-**SWIM (Speaking & Writing Improvement Mate)** is an AI-powered English learning assistant designed to help you improve your writing and speaking skills.
+**SWIM** is an AI-powered English learning assistant designed to help you
+improve your writing and speaking skills.
 
-Receive instant feedback on grammar, vocabulary, pronunciation, fluency, coherence, and overall communication using Google Gemini.
+Receive instant feedback on grammar, vocabulary, fluency, coherence,
+and overall communication through Google Gemini.
 """)
 
 st.divider()
 
-# ==========================================
-# Features
-# ==========================================
-
-st.markdown("## 🚀 Features")
+st.markdown("## Features")
 
 col1, col2 = st.columns(2)
 
@@ -149,13 +116,31 @@ with col2:
 </div>
 """, unsafe_allow_html=True)
 
-st.divider()
+st.markdown(
+    """
+<style>
+.footer-container {
+    text-align: center;
+    color: #64748B;
+    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #E2E8F0;
+}
 
-# ==========================================
-# Footer
-# ==========================================
+.footer-links a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+}
 
-st.markdown("""
+.footer-links a:hover {
+    text-decoration: underline;
+}
+</style>
+
 <div class="footer-container">
 
 <strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio
@@ -167,4 +152,6 @@ st.markdown("""
 </div>
 
 </div>
-""", unsafe_allow_html=True)
+""",
+unsafe_allow_html=True
+)
