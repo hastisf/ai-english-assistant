@@ -46,7 +46,6 @@ if audio_file is not None:
         
         st.write("Mime Type:", audio_file.type)
         st.write("Audio Size:", len(audio_bytes), "bytes")
-        st.audio(audio_bytes)
         
         # 2. Deteksi Mime Type
         mime_type = audio_file.type if audio_file.type else "audio/wav"
