@@ -38,6 +38,12 @@ if audio_file is not None:
         # 1. Baca byte dari file audio
         audio_bytes = audio_file.getvalue()
         
+        # Debug
+        with open("debug.wav", "wb") as f:
+            f.write(audio_bytes)
+            
+        st.success("Audio saved as debug.wav.")
+        
         st.write("Mime Type:", audio_file.type)
         st.write("Audio Size:", len(audio_bytes), "bytes")
         st.audio(audio_bytes)
