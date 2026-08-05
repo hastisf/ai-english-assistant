@@ -19,42 +19,35 @@ st.set_page_config(
 # ==========================================
 # Custom CSS
 # ==========================================
-
 st.markdown("""
 <style>
-.main {
-    padding-top: 2rem;
+
+.main{
+    padding-top:2rem;
 }
-.title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #0F172A;
-    margin-bottom: 0px;
+
+.title{
+    font-size:18px;
+    font-weight:700;
+    color:#0F172A;
+    margin-bottom:5px;
 }
-.subtitle {
-    font-size: 16px;
-    color: #6B7280;
-    line-height: 1.5;
-    margin-top: 10px;
+
+.subtitle{
+    font-size:18px;
+    color:#6B7280;
+    line-height:1.7;
 }
+
+.feature-box{
+    background:#F8FAFC;
+    border:1px solid #E5E7EB;
+    border-radius:15px;
+    padding:20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
-
-# ==========================================
-# Header Layout (Logo + Teks Samping + Teks Bawah)
-# ==========================================
-
-# Buat 2 kolom: Kolom 1 untuk Logo, Kolom 2 untuk Teks Samping
-col_logo, col_text = st.columns([1, 5]) # Perbandingan lebar 1:5
-
-with col_logo:
-    st.image(logo, width=100) # Atur ukuran logo sesuai keinginan
-
-with col_text:
-    st.markdown('<p class="title">Speaking Assistant</p>', unsafe_allow_html=True)
-
-# Teks di bawah logo (di luar kolom)
-st.markdown('<p class="subtitle">Improve your speaking skills with AI real-time feedback.</p>', unsafe_allow_html=True)
 
 # ==========================================
 # Header
