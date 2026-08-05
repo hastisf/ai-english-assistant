@@ -3,7 +3,7 @@ import streamlit as st
 from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
 
-st.title("📝 Writing Evaluation")
+st.title("🖋️ Writing Evaluation")
 st.write("Receive AI-powered feedback on your English writing.")
 
 cefr_level = st.selectbox("CEFR Level", ["A1", "A2", "B1", "B2", "C1", "C2"])
