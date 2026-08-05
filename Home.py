@@ -64,7 +64,7 @@ Speaking & Writing Improvement Mate
 </div>
 
 <div class="subtitle">
-Improve your English with AI-powered writing and speaking feedback.
+Improve your English with AI-powered writing and speaking feedback
 </div>
 """, unsafe_allow_html=True)
 
