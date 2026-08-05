@@ -10,8 +10,8 @@ logo = Image.open("assets/swim.png")
 # Page Configuration
 # ==========================================
 st.set_page_config(
-    page_title="SWIM",
-    page_icon=logo,
+    page_title="Home - SWIM",
+    page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -27,7 +27,7 @@ st.markdown("""
 }
 
 .title{
-    font-size:30px;
+    font-size:32px;
     font-weight:700;
     color:#0F172A;
     margin-bottom:5px;
@@ -50,17 +50,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# Header
+# Header (Logo Diperbesar & Layout Rapi)
 # ==========================================
-col_logo, col_text = st.columns([1, 6])
+col_logo, col_text = st.columns([1, 4], vertical_alignment="center")
 
 with col_logo:
-    st.image(logo, width=90)
+    st.image(logo, width=150)
 
 with col_text:
     st.markdown("""
 <div class="title">
-Speaking & Writing Improvement Mate
+🏠 Speaking & Writing Improvement Mate
 </div>
 
 <div class="subtitle">
@@ -116,6 +116,9 @@ with col2:
 </div>
 """, unsafe_allow_html=True)
 
+# ==========================================
+# Footer
+# ==========================================
 st.markdown(
     """
 <style>
@@ -153,5 +156,5 @@ st.markdown(
 
 </div>
 """,
-unsafe_allow_html=True
+    unsafe_allow_html=True
 )
