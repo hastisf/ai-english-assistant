@@ -10,8 +10,8 @@ logo = Image.open("assets/swim.png")
 # Page Configuration
 # ==========================================
 st.set_page_config(
-    page_title="Home - SWIM",
-    page_icon="🏠",
+    page_title="SWIM",
+    page_icon=logo,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -50,17 +50,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# Header (Logo Diperbesar & Layout Rapi)
+# Header (Logo Diperbesar)
 # ==========================================
 col_logo, col_text = st.columns([1, 4], vertical_alignment="center")
 
 with col_logo:
-    st.image(logo, width=150)
+    st.image(logo, width=150)  # Ukuran logo diperbesar dari 90 ke 150
 
 with col_text:
     st.markdown("""
 <div class="title">
-🏠 Speaking & Writing Improvement Mate
+Speaking & Writing Improvement Mate
 </div>
 
 <div class="subtitle">
