@@ -3,8 +3,14 @@ import streamlit as st
 from google.genai import types
 from modules.gemini_client import MODEL, client
 
-st.header("🗣️ Speaking Evaluation")
-
+st.markdown(
+    """
+    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
+        🗣️ Speaking Evaluation
+    </h2>
+    """, 
+    unsafe_allow_html=True
+)
 audio_file = st.audio_input("Record your speaking")
 
 if audio_file is not None:
