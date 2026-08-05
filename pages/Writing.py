@@ -4,8 +4,15 @@ import streamlit as st
 from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
 
-st.title("🖋️ Writing Evaluation")
-st.write("Receive AI-powered feedback on your English writing.")
+st.markdown(
+    """
+    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
+        🖋️ Writing Evaluation
+    </h2>
+    """, 
+    unsafe_allow_html=True
+)
+st.write("Receive AI-powered feedback on our English writing")
 
 cefr_level = st.selectbox("CEFR Level", ["A1", "A2", "B1", "B2", "C1", "C2"])
 writing_type = st.selectbox(
