@@ -90,7 +90,7 @@ with col1:
     st.markdown("""
 <div class="feature-box">
 
-#### 📝 Writing Evaluation
+##### 📝 Writing Evaluation
 
 - Grammar correction
 - Vocabulary suggestions
@@ -105,7 +105,7 @@ with col2:
     st.markdown("""
 <div class="feature-box">
 
-#### 🎙️ Speaking Evaluation
+##### 🎙️ Speaking Evaluation
 
 - Pronunciation feedback
 - Fluency assessment
