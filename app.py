@@ -46,12 +46,6 @@ st.markdown("""
     padding:20px;
 }
 
-.footer{
-    text-align:center;
-    color:#9CA3AF;
-    font-size:14px;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -76,9 +70,6 @@ Improve your English with AI-powered writing and speaking feedback.
 
 st.divider()
 
-# ==========================================
-# Welcome
-# ==========================================
 st.markdown("## Welcome")
 
 st.write("""
@@ -91,21 +82,15 @@ and overall communication through Google Gemini.
 
 st.divider()
 
-# ==========================================
-# Features
-# ==========================================
 st.markdown("## Features")
 
 col1, col2 = st.columns(2)
 
 with col1:
-
     st.markdown("""
 <div class="feature-box">
 
 ### 📝 Writing Evaluation
-
-Evaluate your English writing and receive:
 
 - Grammar correction
 - Vocabulary suggestions
@@ -117,13 +102,10 @@ Evaluate your English writing and receive:
 """, unsafe_allow_html=True)
 
 with col2:
-
     st.markdown("""
 <div class="feature-box">
 
 ### 🎙️ Speaking Evaluation
-
-Evaluate your spoken English with AI:
 
 - Pronunciation feedback
 - Fluency assessment
@@ -134,48 +116,42 @@ Evaluate your spoken English with AI:
 </div>
 """, unsafe_allow_html=True)
 
-st.divider()
-
-# ==========================================
-# Footer
-# ==========================================
 st.markdown(
     """
-    <style>
-    .footer-container {
-        text-align: center;
-        color: #64748B;
-        font-size: 13px;
-        margin-top: 40px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        border-top: 1px solid #E2E8F0;
-    }
+<style>
+.footer-container {
+    text-align: center;
+    color: #64748B;
+    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #E2E8F0;
+}
 
-    .footer-links a {
-        color: #2563EB;
-        text-decoration: none;
-        font-weight: 600;
-        margin: 0 10px;
-    }
+.footer-links a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+}
 
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-    </style>
+.footer-links a:hover {
+    text-decoration: underline;
+}
+</style>
 
-    <div class="footer-container">
-        <div><strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio</div>
+<div class="footer-container">
 
-        <div style="margin-top:6px;">
-            SWIM • Speaking & Writing Improvement Mate
-        </div>
+<strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio
 
-        <div class="footer-links" style="margin-top:10px;">
-            <a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a> •
-            <a href="https://github.com/hastisf/" target="_blank">GitHub</a>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
+<div class="footer-links" style="margin-top:8px;">
+<a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a>
+•
+<a href="https://github.com/hastisf/" target="_blank">GitHub</a>
+</div>
+
+</div>
+""",
+unsafe_allow_html=True
 )
