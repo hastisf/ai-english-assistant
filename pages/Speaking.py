@@ -51,14 +51,32 @@ if audio_file is not None:
         mime_type = audio_file.type if audio_file.type else "audio/wav"
 
         prompt = """
-        Transcribe this audio, then evaluate the speaking ability based on:
-        1. Transcribed text
-        2. Fluency & Pronunciation
-        3. Grammar & Vocabulary
-        4. Overall Score (0-100)
-        5. Improvement Suggestions
+        You are an experienced English speaking evaluator.
 
-        Return valid JSON only.
+        Analyze the uploaded speech and evaluate the speaker's English proficiency.
+
+        Organize your response using the following headings:
+
+        ## Transcribed Text
+        Provide the complete transcription of the audio.
+
+        ## Fluency & Pronunciation
+        Evaluate the speaker's pronunciation, fluency, intonation, speaking pace, and clarity in one concise paragraph.
+
+        ## Grammar & Vocabulary
+        Evaluate grammar accuracy, vocabulary range, and sentence structure in one concise paragraph.
+
+        ## Overall Score
+        Provide an overall score between 0 and 100, followed by a brief explanation.
+
+        ## Suggestions for Improvement
+        Provide 3–5 practical suggestions to help the speaker improve.
+
+        Requirements:
+        - Return the response in Markdown format.
+        - Do not return JSON.
+        - Do not use code blocks.
+        - Keep the evaluation concise, professional, and constructive.
         """
 
         # 3. Kirim ke Gemini
