@@ -1,19 +1,23 @@
 import streamlit as st
+from google.genai import types
 from modules.gemini_client import MODEL, client
 
 st.title("🎙️ Speaking Evaluation")
 
 audio_file = st.audio_input("Record your speaking")
-# Atau gunakan: audio_file = st.file_uploader("Upload Audio", type=["wav", "mp3", "m4a"])
 
 if audio_file is not None:
-  st.audio(audio_file)
+    st.audio(audio_file)
 
-  if st.button("🎙️ Evaluate Speaking", use_container_width=True):
-    with st.spinner("Transcribing & Analyzing..."):
-      audio_bytes = audio_file.read()
+    if st.button("🎙️ Evaluate Speaking", use_container_width=True):
+        with st.spinner("Transcribing & Analyzing..."):
+            # 1. Baca byte dari file audio
+            audio_bytes = audio_file.read()
+            
+            # 2. Deteksi Mime Type (default ke audio/wav jika tidak terdeteksi)
+            mime_type = audio_file.type if audio_file.type else "audio/wav"
 
-      prompt = """
+            prompt = """
             Transcribe this audio, then evaluate the speaking ability based on:
             1. Transcribed text
             2. Fluency & Pronunciation
@@ -24,12 +28,16 @@ if audio_file is not None:
             Return valid JSON only.
             """
 
-      response = client.models.generate_content(
-          model=MODEL,
-          contents=[
-              prompt,
-              {"mime_type": audio_file.type or "audio/wav", "data": audio_bytes},
-          ],
-      )
+            # 3. Kirim ke Gemini dengan types.Part.from_bytes
+            response = client.models.generate_content(
+                model=MODEL,
+                contents=[
+                    prompt,
+                    types.Part.from_bytes(
+                        data=audio_bytes,
+                        mime_type=mime_type
+                    )
+                ]
+            )
 
-      st.markdown(response.text)
+            st.markdown(response.text)
