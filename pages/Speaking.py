@@ -3,7 +3,7 @@ import streamlit as st
 from google.genai import types
 from modules.gemini_client import MODEL, client
 
-st.title("🗣️ Speaking Evaluation")
+st.header("🗣️ Speaking Evaluation")
 
 audio_file = st.audio_input("Record your speaking")
 
