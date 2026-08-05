@@ -27,18 +27,19 @@ st.markdown("""
 }
 
 .title{
-    font-size:34px;
+    font-size:26px;
     font-weight:700;
     color:#0F172A;
-    margin-top:12px;
+    line-height:1.3;
+    margin-top:8px;
     margin-bottom:0;
 }
 
 .subtitle{
-    font-size:20px;
+    font-size:18px;
     color:#64748B;
-    line-height:1.7;
-    margin-top:18px;
+    line-height:1.6;
+    margin-top:16px;
 }
 
 .feature-box{
@@ -48,7 +49,7 @@ st.markdown("""
     padding:20px;
 }
 
-.footer-container {
+.footer-container{
     text-align:center;
     color:#64748B;
     font-size:13px;
@@ -76,10 +77,10 @@ st.markdown("""
 # Header
 # ==========================================
 
-col_logo, col_title = st.columns([1, 6], vertical_alignment="center")
+col_logo, col_title = st.columns([1.2, 4.8], vertical_alignment="center")
 
 with col_logo:
-    st.image(logo, width=90)
+    st.image(logo, width=100)
 
 with col_title:
     st.markdown("""
@@ -100,14 +101,12 @@ st.divider()
 # Welcome
 # ==========================================
 
-st.markdown("## Welcome")
+st.markdown("## 👋 Welcome")
 
 st.write("""
-**SWIM** is an AI-powered English learning assistant designed to help you
-improve your writing and speaking skills.
+**SWIM (Speaking & Writing Improvement Mate)** is an AI-powered English learning assistant designed to help you improve your writing and speaking skills.
 
-Receive instant feedback on grammar, vocabulary, fluency, coherence,
-and overall communication through Google Gemini.
+Receive instant feedback on grammar, vocabulary, pronunciation, fluency, coherence, and overall communication using Google Gemini.
 """)
 
 st.divider()
@@ -116,7 +115,7 @@ st.divider()
 # Features
 # ==========================================
 
-st.markdown("## Features")
+st.markdown("## 🚀 Features")
 
 col1, col2 = st.columns(2)
 
@@ -150,30 +149,22 @@ with col2:
 </div>
 """, unsafe_allow_html=True)
 
+st.divider()
+
 # ==========================================
 # Footer
 # ==========================================
 
-st.markdown(
-"""
+st.markdown("""
 <div class="footer-container">
 
 <strong>Hasti Sri Fatmawati</strong> | Data Analyst Portfolio
 
 <div class="footer-links" style="margin-top:8px;">
-<a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">
-LinkedIn
-</a>
-
+<a href="https://www.linkedin.com/in/hasti-sri-fatmawati-361b49417/" target="_blank">LinkedIn</a>
 •
-
-<a href="https://github.com/hastisf/" target="_blank">
-GitHub
-</a>
-
+<a href="https://github.com/hastisf/" target="_blank">GitHub</a>
 </div>
 
 </div>
-""",
-unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
