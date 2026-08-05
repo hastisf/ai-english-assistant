@@ -52,7 +52,7 @@ st.markdown("""
 # ==========================================
 # Header
 # ==========================================
-col_logo, col_text = st.columns([1, 6])
+col_logo, col_text = st.columns([1, 5])
 
 with col_logo:
     st.image(logo, width=90)
