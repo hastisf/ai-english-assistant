@@ -1,8 +1,7 @@
 from google.genai import types
-from modules.gemini_client import client, MODEL
+from modules.gemini_client import MODEL, client
 
 def evaluate_speaking(audio_file):
-
     audio_bytes = audio_file.getvalue()
 
     mime_type = (
