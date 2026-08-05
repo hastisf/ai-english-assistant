@@ -36,7 +36,11 @@ if audio_file is not None:
             time.sleep(0.4)
 
         # 1. Baca byte dari file audio
-        audio_bytes = audio_file.read()
+        audio_bytes = audio_file.getvalue()
+        
+        st.write("Mime Type:", audio_file.type)
+        st.write("Audio Size:", len(audio_bytes), "bytes")
+        st.audio(audio_bytes)
         
         # 2. Deteksi Mime Type
         mime_type = audio_file.type if audio_file.type else "audio/wav"
