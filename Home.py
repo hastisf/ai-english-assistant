@@ -57,16 +57,17 @@ col_logo, col_text = st.columns([1, 6])
 with col_logo:
     st.image(logo, width=120)
 
+<div class="subtitle">
+Improve your English with AI-powered writing and speaking feedback
+</div>
+""", unsafe_allow_html=True)
+
+
 with col_text:
     st.markdown("""
 <div class="title">
 Speaking & Writing Improvement Mate
 </div>
-
-<div class="subtitle">
-Improve your English with AI-powered writing and speaking feedback
-</div>
-""", unsafe_allow_html=True)
 
 st.divider()
 
