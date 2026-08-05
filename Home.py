@@ -82,7 +82,7 @@ and overall communication through Google Gemini.
 
 st.divider()
 
-st.markdown("## Features")
+st.markdown("### Features")
 
 col1, col2 = st.columns(2)
 
@@ -90,7 +90,7 @@ with col1:
     st.markdown("""
 <div class="feature-box">
 
-### 📝 Writing Evaluation
+#### 📝 Writing Evaluation
 
 - Grammar correction
 - Vocabulary suggestions
@@ -105,7 +105,7 @@ with col2:
     st.markdown("""
 <div class="feature-box">
 
-### 🎙️ Speaking Evaluation
+#### 🎙️ Speaking Evaluation
 
 - Pronunciation feedback
 - Fluency assessment
