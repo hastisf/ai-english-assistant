@@ -27,7 +27,7 @@ st.markdown("""
 }
 
 .title{
-    font-size:21px;
+    font-size:20px;
     font-weight:700;
     color:#0F172A;
     margin-bottom:5px;
