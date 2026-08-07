@@ -1,5 +1,6 @@
 import json
 import time
+import plotly.graph_objects as go
 import streamlit as st
 from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
@@ -118,6 +119,14 @@ if st.button("✨ Evaluate Writing", use_container_width=True):
         # Tampilkan Overall Score
         score = int(result.get("overall_score", 0))
 
+        grammar_score = int(result.get("grammar_score", 0))
+        vocabulary_score = int(result.get("vocabulary_score", 0))
+        coherence_score = int(result.get("coherence_score", 0))
+        task_score = int(result.get("task_achievement_score", 0))
+
+        estimated_cefr = result.get("estimated_cefr", "-")
+        estimated_ielts = result.get("estimated_ielts", "-")
+
         if score >= 85:
             level = "Advanced"
         elif score >= 70:
@@ -129,23 +138,81 @@ if st.button("✨ Evaluate Writing", use_container_width=True):
 
         st.divider()
 
-        st.write("")
-
         with st.container(border=True):
 
-            col_score, col_level = st.columns(
-                2,
-                vertical_alignment="center"
-            )
-            
+            col1, col2 = st.columns(2)
 
-            with col_score:
+            with col1:
                 st.caption("Overall Score")
                 st.subheader(f"{score}/100")
 
-            with col_level:
+                st.caption("Estimated IELTS")
+                st.markdown(f"**Band {estimated_ielts}**")
+
+            with col2:
                 st.caption("Proficiency Level")
                 st.markdown(f"**{level}**")
+
+                st.caption("Estimated CEFR")
+                st.markdown(f"**{estimated_cefr}**")
+
+    with st.container(border=True):
+        
+        st.write("**Performance Overview**")
+        st.caption("Visual summary of your writing performance.")
+
+        categories = [
+            "Grammar",
+            "Vocabulary",
+            "Coherence",
+            "Task Achievement"
+        ]
+
+        values = [
+            grammar_score,
+            vocabulary_score,
+            coherence_score,
+            task_score
+        ]
+
+        fig = go.Figure()
+
+        fig.add_trace(
+            go.Scatterpolar(
+                r=values + [values[0]],
+                theta=categories + [categories[0]],
+                fill="toself",
+                line=dict(
+                    color="#1D4ED8",
+                    width=3
+                ),
+                fillcolor="rgba(34,211,238,0.35)"
+            )
+        )
+
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                    visible=True,
+                    range=[0, 100],
+                    gridcolor="#D6F4FF",
+                    tickfont=dict(size=10)
+                ),
+                angularaxis=dict(
+                    tickfont=dict(size=12)
+                )
+            ),
+            showlegend=False,
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            margin=dict(l=20, r=20, t=20, b=20),
+            height=420,
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
 
         # Tampilkan Detail Feedback dalam Tab/Expander
         st.write("**Skill Breakdown**")
