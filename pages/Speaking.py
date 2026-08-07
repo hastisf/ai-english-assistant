@@ -249,8 +249,8 @@ if audio_file is not None:
 
             st.markdown(f"""
             <div style="
-            background:#F8FAFC;
-            border-left:5px solid #64748B;
+            background:#E0F7FA;
+            border-left:5px solid #0EA5E9;
             padding:15px;
             border-radius:8px;
             margin-top:12px;
