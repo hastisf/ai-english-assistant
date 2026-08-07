@@ -190,7 +190,7 @@ if audio_file is not None:
                     
                 with col_level:
                     st.caption("Proficiency Level")
-                    st.subheader(level)
+                    st.markdwon(f"**{level}**)
             
             with st.container(border=True):
                 st.markdown("#### Transcript")
