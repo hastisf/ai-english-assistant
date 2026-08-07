@@ -19,7 +19,7 @@ audio_file = st.audio_input("Record your speaking")
 if audio_file is not None:
     st.audio(audio_file)
 
-    if st.button("🎙️ Evaluate Speaking", use_container_width=True):
+    if st.button("💠 Evaluate Speaking", use_container_width=True):
         # -----------------------------------------------------------------
         # BLOOMING ANIMATION LOADING
         # -----------------------------------------------------------------
