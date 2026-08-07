@@ -327,21 +327,60 @@ if audio_file is not None:
                 use_container_width=True
             )
 
-            col1, col2 = st.columns(2, gap="small")
+            st.markdown(f"""
+            <style>
+            .score-grid {{
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 12px;
+                width: 100%;
+            }}
             
-            with col1:
-                st.markdown(f"**Fluency**  \n{fluency_score}")
+            .score-card {{
+                background: #F8FAFC;
+                padding: 12px;
+                border-radius: 12px;
+                border: 1px solid #E2E8F0;
+            }}
 
-            with col2:
-                st.markdown(f"**Pronunciation**  \n{pronunciation_score}")
-                
-            col3, col4 = st.columns(2, gap="small")
+            .score-title {{
+                font-size: 14px;
+                color: #64748B;
+                font-weight: 600;
+                margin-bottom: 4px;
+            }}
 
-            with col3:
-                st.markdown(f"**Grammar**  \n{grammar_score}")
-                
-            with col4:
-                st.markdown(f"**Vocabulary**  \n{vocabulary_score}")
+            .score-value {{
+                font-size: 24px;
+                font-weight: 700;
+                color: #0F172A;
+            }}
+            </style>
+
+            <div class="score-grid">
+            
+                <div class="score-card">
+                    <div class="score-title">Fluency</div>
+                    <div class="score-value">{fluency_score}</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-title">Pronunciation</div>
+                    <div class="score-value">{pronunciation_score}</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-title">Grammar</div>
+                    <div class="score-value">{grammar_score}</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-title">Vocabulary</div>
+                    <div class="score-value">{vocabulary_score}</div>
+                </div>
+
+            </div>
+            """, unsafe_allow_html=True)
             
             with st.container(border=True):
                 st.write("**Transcript**")
