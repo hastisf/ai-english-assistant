@@ -8,12 +8,24 @@ from modules.gemini_client import MODEL, client
 
 st.markdown(
     """
-    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
-        🎙 Speaking Evaluation
+    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin:0 !important;padding:0 !important;'>
+        Speaking Evaluation
     </h2>
-    """, 
-    unsafe_allow_html=True
+
+<div style="
+width:200px;
+height:6px;
+border-radius:999px;
+background:linear-gradient(90deg,#1D4ED8,#22D3EE);
+margin-top:2px;
+margin-bottom:10px;
+">
+</div>
+""",
+unsafe_allow_html=True
 )
+
+st.caption("Receive AI-powered feedback to improve your English speaking skills.")
 
 st.markdown("""
 <style>
