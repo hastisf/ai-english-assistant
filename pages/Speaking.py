@@ -327,19 +327,21 @@ if audio_file is not None:
                 use_container_width=True
             )
 
-            col1, col2, col3, col4 = st.columns(4)
+            col1, col2 = st.columns(2)
             
             with col1:
-                st.metric("Fluency", fluency_score)
+                st.markdown(f"**Fluency**  \n{fluency_score}")
 
             with col2:
-                st.metric("Pronunciation", pronunciation_score)
+                st.markdown(f"**Pronunciation**  \n{pronunciation_score}")
+                
+            col3, col4 = st.columns(2)
 
             with col3:
-                st.metric("Grammar", grammar_score)
-
+                st.markdown(f"**Grammar**  \n{grammar_score}")
+                
             with col4:
-                st.metric("Vocabulary", vocabulary_score)
+                st.markdown(f"**Vocabulary**  \n{vocabulary_score}")
             
             with st.container(border=True):
                 st.write("**Transcript**")
