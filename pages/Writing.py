@@ -6,25 +6,20 @@ from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
 
 st.markdown(
-    """
-    <h2 style="
-    font-size: clamp(1.1rem, 3vw, 1.6rem)
-    margin-bottom:0.5rem;
-    font-weight:700;
-    color:#0F172A;
-    ">
-    🖋️Writing Evaluation
-    </h2>
+"""
+<h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom:0.5rem; font-weight:700; color:#0F172A;'>
+    Writing Evaluation
+</h2>
     
-    <div style="
-    width:120px;
-    height:6px;
-    border-radius:999px;
-    background:linear-gradient(90deg,#1D4ED8,#22D3EE);
-    margin-bottom:10px;
-    ">
-    </div>
-    """, unsafe_allow_html=True)
+<div style="
+width:120px;
+height:6px;
+border-radius:999px;
+background:linear-gradient(90deg,#1D4ED8,#22D3EE);
+margin-bottom:10px;
+">
+</div>
+""", unsafe_allow_html=True)
 
 st.caption("Receive AI-powered feedback to improve your English writing skills.")
 
