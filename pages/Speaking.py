@@ -142,11 +142,11 @@ if audio_file is not None:
                 value=f"{score}/100"
             )
             
-            st.markdown("### Transcript")
+            st.markdown("#### Transcript")
             st.write(result.get("transcript", "-"))
             st.write(...)
             
-            st.markdown("### Feedback")
+            st.markdown("#### Feedback")
             
             col1, col2 = st.columns(2)
             
@@ -170,7 +170,7 @@ if audio_file is not None:
             <div style="
             background:#EFF6FF;
             border-left:5px solid #2563EB;
-            padding:18px;
+            padding:15px;
             border-radius:8px;
             margin-top:12px;
             margin-bottom:12px;
@@ -179,7 +179,18 @@ if audio_file is not None:
             <b>Strengths</b><br>
             {result.get("strengths", "-")}
 
-            <br><br>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown(f"""
+            <div style="
+            background:#FEF2F2;
+            border-left:5px solid #DC2626;
+            padding:15px;
+            border-radius:8px;
+            margin-top:12px;
+            margin-bottom:12px;
+            ">
 
             <b>Weaknesses</b><br>
             {result.get("weaknesses", "-")}
@@ -193,7 +204,8 @@ if audio_file is not None:
             border-left:5px solid #16A34A;
             padding:15px;
             border-radius:8px;
-            margin-top:15px;
+            margin-top:12px;
+            margin-bottom:12px;
             ">
 
             <b>Improvement Suggestion</b><br>
