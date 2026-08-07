@@ -70,7 +70,7 @@ Improve your English with AI-powered writing and speaking feedback
 
 st.divider()
 
-st.markdown("### Welcome")
+st.markdown("### Why SWIM?")
 
 st.write("""
 **SWIM** is an AI-powered English learning assistant designed to help you
