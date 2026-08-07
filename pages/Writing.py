@@ -23,7 +23,7 @@ st.markdown(
     margin-bottom:10px;
     ">
     </div>
-    """, unsafe_allow_html=True
+    """, unsafe_allow_html=True)
 
 st.caption("Receive AI-powered feedback to improve your English writing skills.")
 
