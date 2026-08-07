@@ -7,7 +7,7 @@ from modules.writing import evaluate_writing
 
 st.markdown(
 """
-<h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom:0.1rem; font-weight:700; color:#0F172A;'>
+<h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); margin:0 !important;padding:0 !important; font-weight:700; color:#0F172A;'>
     Writing Evaluation
 </h2>
     
