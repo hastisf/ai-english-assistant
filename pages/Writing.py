@@ -190,9 +190,22 @@ if st.button("✨ Analyze Writing", use_container_width=True):
         """, unsafe_allow_html=True)
 
         if result.get("corrected_version"):
-            with st.container(border=True):
-                st.write("**AI Corrected Version**")
-                st.write(result.get("corrected_version"))
+            st.markdown(f"""
+            <div style="
+            background:#F8FAFC;
+            border-left:5px solid #1D4ED8;
+            padding:15px;
+            border-radius:8px;
+            margin-top:12px;
+            margin-bottom:12px;
+            ">
+
+            <b>AI Corrected Version</b><br>
+            {result.get("corrected_version","-")}
+
+            </div>
+            """, unsafe_allow_html=True)
+
 
         # Simpan ke Database
         save_evaluation(
