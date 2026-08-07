@@ -27,10 +27,10 @@ if audio_file is not None:
         progress_bar = st.progress(0)
 
         growth_stages = [
-            (15, "🌰 Planted seeds (Processing audio recording)..."),
-            (40, "🌱 Sprouting (Transcribing speech to text)..."),
-            (65, "🌿 Growing stem (Analyzing fluency & pronunciation)..."),
-            (85, "🌷 Preparing to bloom (Evaluating grammar & vocabulary)..."),
+            (15, "🌰 Processing audio recording..."),
+            (40, "🌱 Transcribing speech to text..."),
+            (65, "🌿 Analyzing fluency & pronunciation..."),
+            (85, "🌷 Evaluating grammar & vocabulary..."),
         ]
 
         for percent, text in growth_stages:
@@ -124,7 +124,7 @@ if audio_file is not None:
                     color: #16A34A;
                     margin-top:8px;
                 ">
-                    🌸 Full Bloom! Evaluation Complete
+                    🌸 Evaluation Complete!
                 </p>
                 """, 
                 unsafe_allow_html=True
@@ -137,34 +137,48 @@ if audio_file is not None:
 
             score = int(result.get("overall_score", 0))
             
-            st.metric(
-                label="Overall Score",
-                value=f"{score}/100"
-            )
+            # 1. Tentukan Level Proficiency
+            if score >= 85:
+                level = "Advanced"
+            elif score >= 70:
+                level = "Upper-Intermediate"
+            elif score >= 50:
+                level = "Intermediate"
+            else:
+                level = "Beginner"
+
+            # 2. Garis Pembatas
+            st.divider()
             
-            st.markdown("#### Transcript")
-            st.write(result.get("transcript", "-"))
-            st.write(...)
+            # 3. Hero Card (Skor & Level)
+            with st.container(border=True):
+                col_score, col_level = st.columns(2, vertical_alignment="center")
+                
+                with col_score:
+                    st.caption("Overall Score")
+                    st.title(f" {score}/100")
+                    
+                with col_level:
+                    st.caption("Proficiency Level")
+                    st.subheader(level)
             
-            st.markdown("#### Feedback")
+            with st.container(border=True):
+                st.markdown("#### Transcript")
+                st.info(f'"{result.get("transcript", "-")}"')
             
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                st.markdown(
-                    f"**Fluency:**\n{result.get('fluency_feedback', '-')}"
-                )
-                st.markdown(
-                    f"**Pronunciation:**\n{result.get('pronunciation_feedback', '-')}"
-                )
-            
-            with col2:
-                st.markdown(
-                    f"**Grammar:**\n{result.get('grammar_feedback', '-')}"
-                )
-                st.markdown(
-                    f"**Vocabulary:**\n{result.get('vocabulary_feedback', '-')}"
-                )
+            st.markdown("#### Skill Breakdown")
+            tab1, tab2, tab3, tab4 = st.tabs(["Fluency", "Pronunciation", "Grammar", "Vocabulary"])
+
+            with tab1:
+                st.write(result.get('fluency_feedback', '-'))
+            with tab2:
+                st.write(result.get('pronunciation_feedback', '-'))
+            with tab3:
+                st.write(result.get('grammar_feedback', '-'))
+            with tab4:
+                st.write(result.get('vocabulary_feedback', '-'))
+
+            st.write("")
                 
             st.markdown(f"""
             <div style="
