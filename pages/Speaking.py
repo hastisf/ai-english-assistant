@@ -1,12 +1,14 @@
+import json
 import time
 import streamlit as st
 from google.genai import types
+from modules.database import save_evaluation
 from modules.gemini_client import MODEL, client
 
 st.markdown(
     """
     <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
-        🗣️ Speaking Evaluation
+        🎙 Speaking Evaluation
     </h2>
     """, 
     unsafe_allow_html=True
@@ -33,14 +35,23 @@ if audio_file is not None:
 
         for percent, text in growth_stages:
             progress_bar.progress(percent)
-            loading_text.markdown(f"<p style='text-align: center; font-weight: bold;'>{text}</p>", unsafe_allow_html=True)
+            loading_text.markdown(
+                f"""
+                <p style="
+                    text-align: center;
+                    color:#2563EB;
+                    font-size:16px;
+                    font-weight: 600;
+                ">
+                    {text}
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
             time.sleep(0.4)
 
         # 1. Baca byte dari file audio
         audio_bytes = audio_file.getvalue()
-        
-        st.write("Mime Type:", audio_file.type)
-        st.write("Audio Size:", len(audio_bytes), "bytes")
         
         # 2. Deteksi Mime Type
         mime_type = audio_file.type if audio_file.type else "audio/wav"
@@ -48,30 +59,33 @@ if audio_file is not None:
         prompt = """
         You are an experienced English speaking evaluator.
 
-        Analyze the uploaded speech and evaluate the speaker's English proficiency.
+        Analyze the uploaded speech and return ONLY a valid JSON object.
 
-        Organize your response using the following headings:
+        Return ONLY the JSON object.
 
-        ## Transcribed Text
-        Provide the complete transcription of the audio.
+        Do not include markdown.
+        Do not include explanation.
+        Do not wrap with ```.
 
-        ## Fluency & Pronunciation
-        Evaluate the speaker's pronunciation, fluency, intonation, speaking pace, and clarity in one concise paragraph.
+        Do not add any text before or after the JSON.
+        
+        Use this exact structure:
+        
+        {
+            "transcript": "...",
+            "overall_score": 0,
+            "fluency_feedback": "...",
+            "pronunciation_feedback": "...",
+            "grammar_feedback": "...",
+            "vocabulary_feedback": "...",
+            "strengths": "...",
+            "weaknesses": "...",
+            "improvement_suggestion": "..."
+        }
 
-        ## Grammar & Vocabulary
-        Evaluate grammar accuracy, vocabulary range, and sentence structure in one concise paragraph.
-
-        ## Overall Score
-        Provide an overall score between 0 and 100, followed by a brief explanation.
-
-        ## Suggestions for Improvement
-        Provide 3–5 practical suggestions to help the speaker improve.
-
-        Requirements:
-        - Return the response in Markdown format.
-        - Do not return JSON.
-        - Do not use code blocks.
-        - Keep the evaluation concise, professional, and constructive.
+        Scoring:
+        - Overall score must be between 0-100.
+        - Keep every feedback concise.
         """
 
         # 3. Kirim ke Gemini
@@ -87,15 +101,116 @@ if audio_file is not None:
                 ]
             )
 
+            clean_text = (
+                response.text
+                .replace("```json", "")
+                .replace("```", "")
+                .strip()
+            )
+
+            try:
+                result = json.loads(clean_text)
+            except json.JSONDecodeError:
+                st.error("AI returned an invalid response. Please try again.")
+                st.stop()
+
             progress_bar.progress(100)
-            loading_text.markdown("<p style='text-align: center; font-weight: bold; color: #2e7d32;'>🌸 Full Bloom! Evaluation Complete.</p>", unsafe_allow_html=True)
+            loading_text.markdown(
+                """
+                <p style="
+                    text-align: center; 
+                    font-weight: 700; 
+                    font-size:16px;
+                    color: #16A34A;
+                    margin-top:8px;
+                ">
+                    🌸 Full Bloom! Evaluation Complete
+                </p>
+                """, 
+                unsafe_allow_html=True
+            )
+            
             time.sleep(0.6)
 
             loading_text.empty()
             progress_bar.empty()
 
-            st.markdown(response.text)
+            score = int(result.get("overall_score", 0))
+            
+            st.metric(
+                label="Overall Score",
+                value=f"{score}/100"
+            )
+            
+            st.markdown("### Transcript")
+            st.write(result.get("transcript", "-"))
+            st.write(...)
+            
+            st.markdown("### Feedback")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown(
+                    f"**Fluency:**\n{result.get('fluency_feedback', '-')}"
+                )
+                st.markdown(
+                    f"**Pronunciation:**\n{result.get('pronunciation_feedback', '-')}"
+                )
+            
+            with col2:
+                st.markdown(
+                    f"**Grammar:**\n{result.get('grammar_feedback', '-')}"
+                )
+                st.markdown(
+                    f"**Vocabulary:**\n{result.get('vocabulary_feedback', '-')}"
+                )
+                
+            st.markdown(f"""
+            <div style="
+            background:#EFF6FF;
+            border-left:5px solid #2563EB;
+            padding:18px;
+            border-radius:8px;
+            margin-top:12px;
+            margin-bottom:12px;
+            ">
 
+            <b>Strengths</b><br>
+            {result.get("strengths", "-")}
+
+            <br><br>
+
+            <b>Weaknesses</b><br>
+            {result.get("weaknesses", "-")}
+
+            </div>
+            """, unsafe_allow_html=True)
+                
+            st.markdown(f"""
+            <div style="
+            background:#F8FAFC;
+            border-left:5px solid #16A34A;
+            padding:15px;
+            border-radius:8px;
+            margin-top:15px;
+            ">
+
+            <b>Improvement Suggestion</b><br>
+            {result.get("improvement_suggestion", "-")}
+
+            </div>
+            """, unsafe_allow_html=True)
+
+            save_evaluation(
+                eval_type="Speaking",
+                user_input=result.get("transcript", ""),
+                overall_score=score,
+                feedback_json=json.dumps(result),
+            )
+                
+            st.toast("Speaking evaluation saved successfully!")
+        
         except Exception as e:
             loading_text.empty()
             progress_bar.empty()
