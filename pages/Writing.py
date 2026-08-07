@@ -8,15 +8,22 @@ from modules.writing import evaluate_writing
 st.markdown(
     """
     <h2 style="
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    margin-bottom:4px;
     font-weight:700;
-    margin-bottom:0.3rem;
     color:#0F172A;
     ">
-    🖋️ Writing Evaluation
+    Writing Evaluation
     </h2>
-    """, 
-    unsafe_allow_html=True)
+    
+    <div style="
+    width:120px;
+    height:6px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#1D4ED8,#22D3EE);
+    margin-bottom:10px;
+    ">
+    </div>
+    """, unsafe_allow_html=True
 
 st.caption("Receive AI-powered feedback to improve your English writing skills.")
 
