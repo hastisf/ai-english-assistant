@@ -1,6 +1,7 @@
 import json
 import time
 import streamlit as st
+import plotly.graph_objects as go
 from google.genai import types
 from modules.database import save_evaluation
 from modules.gemini_client import MODEL, client
@@ -111,11 +112,22 @@ if audio_file is not None:
         
         {
             "transcript": "...",
+            
             "overall_score": 0,
+
+            "estimated_cefr": "",
+            "estimated_ielts": "",
+
+            "fluency_score": 0,
+            "pronunciation_score": 0,
+            "grammar_score": 0,
+            "vocabulary_score": 0,
+    
             "fluency_feedback": "...",
             "pronunciation_feedback": "...",
             "grammar_feedback": "...",
             "vocabulary_feedback": "...",
+            
             "strengths": "...",
             "weaknesses": "...",
             "improvement_suggestion": "..."
@@ -123,20 +135,25 @@ if audio_file is not None:
 
         Scoring:
         - Overall score must be between 0-100.
-        - Keep every feedback concise.
+        - Fluency, Pronunciation, Grammar, and Vocabulary scores must each be between 0 and 100.
+        - The individual scores should be consistent with the overall score.
+        - Estimate the user's CEFR level (A1, A2, B1, B2, C1, or C2).
+        - Estimate an IELTS Speaking band score (0.0–9.0).
 
-        Write all feedback directly to the user.
+        Writing Style:
 
-        Always use second-person language such as:
-        - "You..."
-        - "Your..."
-
-        Never refer to the user as:
-        - "The speaker"
-        - "The candidate"
-        - "The student"
-        - "The speaker's"
-
+        - Keep every feedback concise (1–3 sentences).
+        - Write all feedback directly to the user.
+        - Always use second-person language such as:
+          - "You..."
+          - "Your..."
+        - Never refer to the user as:
+          - "The speaker"
+          - "The candidate"
+          - "The student"
+        - Maintain a supportive, constructive, and encouraging tone.
+        
+        Return ONLY valid JSON.
         """
 
         # 3. Kirim ke Gemini
@@ -187,6 +204,11 @@ if audio_file is not None:
             progress_bar.empty()
 
             score = int(result.get("overall_score", 0))
+
+            fluency_score = int(result.get("fluency_score", 0))
+            pronunciation_score = int(result.get("pronunciation_score", 0))
+            grammar_score = int(result.get("grammar_score", 0))
+            vocabulary_score = int(result.get("vocabulary_score", 0))
             
             # 1. Tentukan Level Proficiency
             if score >= 85:
@@ -202,16 +224,110 @@ if audio_file is not None:
             st.divider()
             
             # 3. Hero Card (Skor & Level)
+            estimated_cefr = result.get("estimated_cefr", "-")
+            estimated_ielts = result.get("estimated_ielts", "-")
+            
             with st.container(border=True):
-                col_score, col_level = st.columns(2, vertical_alignment="center")
+                col1, col2 = st.columns(
+                    2,
+                    vertical_alignment="center"
+                )
                 
-                with col_score:
+                with col1:
                     st.caption("Overall Score")
                     st.subheader(f"{score}/100")
                     
-                with col_level:
+                    st.caption("Estimated IELTS")
+                    st.markdown(f"**Band {estimated_ielts}**")
+                
+                with col2:
                     st.caption("Proficiency Level")
                     st.markdown(f"**{level}**")
+
+                    st.caption("Estimated CEFR")
+                    st.markdown(f"**{estimated_cefr}**")
+
+            st.write("**Performance Overview**")
+            st.caption("Visual summary of your English speaking performance.")
+
+            categories = [
+                "Fluency",
+                "Pronunciation",
+                "Grammar",
+                "Vocabulary"
+            ]
+            
+            values = [
+                fluency_score,
+                pronunciation_score,
+                grammar_score,
+                vocabulary_score
+            ]
+            
+            fig = go.Figure()
+            
+            fig.add_trace(
+                go.Scatterpolar(
+                    r=values + [values[0]],
+                    theta=categories + [categories[0]],
+                    fill="toself",
+                    fillcolor="rgba(34,211,238,0.35)",
+                    line=dict(
+                        color="#1D4ED8",
+                        width=3
+                    ),
+                    marker=dict(
+                        color="#1D4ED8",
+                        size=8
+                    ),
+                )
+            )
+            
+            fig.update_layout(
+                polar=dict(
+                    bgcolor="white",
+                    radialaxis=dict(
+                        visible=True,
+                        range=[0,100],
+                        tickfont=dict(size=10),
+                        gridcolor="#E5E7EB",
+                        linecolor="#E5E7EB",
+                    ),
+                    angularaxis=dict(
+                        tickfont=dict(
+                            size=12,
+                            color="#1D4ED8"
+                        )
+                    ),
+                ),
+                margin=dict(
+                    l=20,
+                    r=20,
+                    t=20,
+                    b=20,
+                ),
+                showlegend=False,
+                height=420,
+            )
+            
+            st.plotly_chart(
+                fig,
+                use_container_width=True
+            )
+
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric("Fluency", fluency_score)
+
+            with col2:
+                st.metric("Pronunciation", pronunciation_score)
+
+            with col3:
+                st.metric("Grammar", grammar_score)
+
+            with col4:
+                st.metric("Vocabulary", vocabulary_score)
             
             with st.container(border=True):
                 st.write("**Transcript**")
