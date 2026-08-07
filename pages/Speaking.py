@@ -186,17 +186,17 @@ if audio_file is not None:
                 
                 with col_score:
                     st.caption("Overall Score")
-                    st.title(f" {score}/100")
+                    st.subheader(f"{score}/100")
                     
                 with col_level:
                     st.caption("Proficiency Level")
-                    st.markdwon(f"**{level}**)
+                    st.markdown(f"**{level}**")
             
             with st.container(border=True):
-                st.markdown("#### Transcript")
+                st.write("**Transcript**")
                 st.info(f'"{result.get("transcript", "-")}"')
             
-            st.markdown("#### Skill Breakdown")
+            st.writen("**Skill Breakdown**")
             tab1, tab2, tab3, tab4 = st.tabs(["Fluency", "Pronunciation", "Grammar", "Vocabulary"])
 
             with tab1:
