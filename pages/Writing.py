@@ -4,17 +4,18 @@ import streamlit as st
 from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
 
-st.markdown("""
-<h2 style="
-font-size: clamp(1.4rem, 4vw, 2.2rem);
-font-weight:700;
-margin-bottom:0.3rem;
-color:#0F172A;
-">
-🖋️ Writing Evaluation
-</h2>
-
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h2 style="
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight:700;
+    margin-bottom:0.3rem;
+    color:#0F172A;
+    ">
+    🖋️ Writing Evaluation
+    </h2>
+    """, 
+    unsafe_allow_html=True)
 
 st.caption("Receive AI-powered feedback to improve your English writing skills.")
 
@@ -61,7 +62,7 @@ user_text = st.text_area(
     "Write your text here", height=200, placeholder="Start writing..."
 )
 
-if st.button("✨ Analyze Writing", use_container_width=True):
+if st.button("✨ Evaluate Writing", use_container_width=True):
     if not user_text.strip():
         st.warning("Please enter your writing first.")
     else:
@@ -104,7 +105,7 @@ if st.button("✨ Analyze Writing", use_container_width=True):
         color:#16A34A;
         margin-top:8px;
         ">
-        🌸 Analysis Complete!
+        🌸 Evaluation Complete!
         </p>
         """, unsafe_allow_html=True)
         
@@ -128,6 +129,8 @@ if st.button("✨ Analyze Writing", use_container_width=True):
 
         st.divider()
 
+        st.write("")
+
         with st.container(border=True):
 
             col_score, col_level = st.columns(
@@ -141,7 +144,7 @@ if st.button("✨ Analyze Writing", use_container_width=True):
                 st.subheader(f"{score}/100")
 
             with col_level:
-                st.caption("Writing Level")
+                st.caption("Proficiency Level")
                 st.markdown(f"**{level}**")
 
         # Tampilkan Detail Feedback dalam Tab/Expander
