@@ -28,13 +28,21 @@ div.stButton > button {
 }
 
 div.stButton > button:hover {
-    background: #1D4ED8;
+    background: linear-gradient(90deg, #2563EB, #06B6D4)
     color: white;
 }
 
 div.stButton > button:active {
-    background: #1E40AF;
+    background: linear-gradient(90deg, #1D4ED8, #22D3EE);
     color: white;
+    transform: scale(0.98);
+}
+
+div.stButton > button:focus,
+div.stButton > button:focus-visible {
+    outline: none;
+    border-color: #22D3EE;
+    box-shadow: 0 0 0 0.2rem rgba(34, 211, 238, 0.35);
 }
 
 </style>
@@ -116,6 +124,19 @@ if audio_file is not None:
         Scoring:
         - Overall score must be between 0-100.
         - Keep every feedback concise.
+
+        Write all feedback directly to the user.
+
+        Always use second-person language such as:
+        - "You..."
+        - "Your..."
+
+        Never refer to the user as:
+        - "The speaker"
+        - "The candidate"
+        - "The student"
+        - "The speaker's"
+
         """
 
         # 3. Kirim ke Gemini
@@ -213,7 +234,7 @@ if audio_file is not None:
             st.markdown(f"""
             <div style="
             background:#EFF6FF;
-            border-left:5px solid #2563EB;
+            border-left:5px solid #1D4ED8;
             padding:15px;
             border-radius:8px;
             margin-top:12px;
@@ -228,8 +249,8 @@ if audio_file is not None:
 
             st.markdown(f"""
             <div style="
-            background:#FEF2F2;
-            border-left:5px solid #DC2626;
+            background:#F8FAFC;
+            border-left:5px solid #64748B;
             padding:15px;
             border-radius:8px;
             margin-top:12px;
@@ -244,8 +265,8 @@ if audio_file is not None:
                 
             st.markdown(f"""
             <div style="
-            background:#F8FAFC;
-            border-left:5px solid #16A34A;
+            background:#ECFEFF;
+            border-left:5px solid #22D3EE;
             padding:15px;
             border-radius:8px;
             margin-top:12px;
