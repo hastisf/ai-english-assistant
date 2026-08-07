@@ -287,17 +287,18 @@ if st.button("✨ Evaluate Writing", use_container_width=True):
         """, unsafe_allow_html=True)
 
         if result.get("corrected_version"):
-            with st.expander("AI Corrected Version", expanded=False):
+            with st.expander("View AI Corrected Version", expanded=False):
                 st.caption("Compare your original writing with an AI-improved version")
                 
                 st.markdown(f"""
                 <div style="
-                background:#F2FEFF;
-                border-left:5px solid #22D3EE;
+                background:linear-gradient(90deg, #FFFFFF, #F2FEFF);
+                border-left:5px solid #38BDF8;
                 padding:15px;
                 border-radius:8px;
-                margin-top:12px;
-                margin-bottom:12px;
+                margin-top:8px;
+                margin-bottom:8px;
+                ine-height:1.7;
                 ">
 
                 {result.get("corrected_version","-")}
