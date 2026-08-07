@@ -4,15 +4,26 @@ import streamlit as st
 from modules.database import save_evaluation  # Akan dibuat di langkah DB
 from modules.writing import evaluate_writing
 
-st.markdown(
-    """
-    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
-        🖋️ Writing Evaluation
-    </h2>
-    """, 
-    unsafe_allow_html=True
-)
-st.write("Receive AI-powered feedback on our English writing")
+st.markdown("""
+<h2 style="
+font-size: clamp(1.4rem, 4vw, 2.2rem);
+font-weight:700;
+margin-bottom:0.3rem;
+color:#0F172A;
+">
+🖋️ Writing Evaluation
+</h2>
+
+<div style="
+width:90px;
+height:5px;
+border-radius:999px;
+background:linear-gradient(90deg,#1D4ED8,#22D3EE);
+margin-bottom:20px;
+"></div>
+""", unsafe_allow_html=True)
+
+st.caption("Receive AI-powered feedback to improve your English writing skills.")
 
 cefr_level = st.selectbox("CEFR Level", ["A1", "A2", "B1", "B2", "C1", "C2"])
 writing_type = st.selectbox(
@@ -34,21 +45,42 @@ if st.button("✨ Analyze Writing", use_container_width=True):
         progress_bar = st.progress(0)
 
         growth_stages = [
-            (15, "🌰 Planted seeds (Scanning user text)..."),
-            (40, "🌱 Sprouting (Analyzing grammar & tenses)..."),
-            (65, "🌿 Growing stem (Evaluating vocabulary & coherence)..."),
-            (85, "🌷 Preparing to bloom (Generating score & feedback)..."),
+            (15, "🌰 Scanning your writing..."),
+            (40, "🌱 Checking grammar & sentence structure..."),
+            (65, "🌿 Evaluating vocabulary & coherence..."),
+            (85, "🌷 Preparing your feedback report..."),
         ]
 
         for percent, text in growth_stages:
             progress_bar.progress(percent)
-            loading_text.markdown(f"<p style='text-align: center; font-weight: bold;'>{text}</p>", unsafe_allow_html=True)
+            loading_text.markdown(
+                f"""
+                <p style="
+                    text-align:center;color:#2563EB;
+                    font-size:16px;
+                    font-weight:600;
+                ">
+                    {text}
+                </p>
+                """,
+                unsafe_allow_html=True)
             time.sleep(0.4)
 
         result = evaluate_writing(user_text, cefr_level, writing_type)
 
         progress_bar.progress(100)
-        loading_text.markdown("<p style='text-align: center; font-weight: bold; color: #2e7d32;'>🌸 Full Bloom! Analysis Complete.</p>", unsafe_allow_html=True)
+        loading_text.markdown("""
+        <p style="
+        text-align:center;
+        font-size:16px;
+        font-weight:700;
+        color:#16A34A;
+        margin-top:8px;
+        ">
+        🌸 Analysis Complete!
+        </p>
+        """, unsafe_allow_html=True)
+        
         time.sleep(0.6)
 
         loading_text.empty()
@@ -56,38 +88,110 @@ if st.button("✨ Analyze Writing", use_container_width=True):
         # -----------------------------------------------------------------
 
         # Tampilkan Overall Score
-        score = result.get("overall_score", 0)
-        st.metric(label="Overall Score", value=f"{score}/100")
+        score = int(result.get("overall_score", 0))
+
+        if score >= 85:
+            level = "Advanced"
+        elif score >= 70:
+            level = "Upper-Intermediate"
+        elif score >= 50:
+            level = "Intermediate"
+        else:
+            level = "Beginner"
+
+        st.divider()
+
+        with st.container(border=True):
+
+            col_score, col_level = st.columns(
+                2,
+                vertical_alignment="center"
+            )
+            
+
+            with col_score:
+                st.caption("Overall Score")
+                st.subheader(f"{score}/100")
+
+            with col_level:
+                st.caption("Writing Level")
+                st.markdown(f"**{level}**")
 
         # Tampilkan Detail Feedback dalam Tab/Expander
-        st.subheader("📊 Feedback Detail")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown(
-                f"**Grammar:**\n{result.get('grammar_feedback', '-')}"
-            )
-            st.markdown(
-                f"**Vocabulary:**\n{result.get('vocabulary_feedback', '-')}"
-            )
-        with col2:
-            st.markdown(
-                f"**Coherence:**\n{result.get('coherence_feedback', '-')}"
-            )
-            st.markdown(
-                f"**Task Achievement:**\n{result.get('task_achievement', '-')}"
-            )
+        st.write("**Skill Breakdown**")
 
-        st.success(
-            f"**Strengths:** {result.get('strengths', '-')}\n\n"
-            f"**Weaknesses:** {result.get('weaknesses', '-')}"
-        )
+        tab1, tab2, tab3, tab4 = st.tabs([
+            "Grammar",
+            "Vocabulary",
+            "Coherence",
+            "Task Achievement"
+        ])
 
-        st.info(
-            f"**Improvement Suggestion:**\n{result.get('improvement_suggestion', '-')}"
-        )
+        with tab1:
+            st.write(result.get("grammar_feedback","-"))
+
+        with tab2:
+            st.write(result.get("vocabulary_feedback","-"))
+
+        with tab3:
+            st.write(result.get("coherence_feedback","-"))
+
+        with tab4:
+            st.write(result.get("task_achievement","-"))
+
+        st.write("")
+        
+        st.markdown(f"""
+        <div style="
+        background:#EFF6FF;
+        border-left:5px solid #1D4ED8;
+        padding:15px;
+        border-radius:8px;
+        margin-top:12px;
+        margin-bottom:12px;
+        ">
+
+        <b>Strengths</b><br>
+        {result.get("strengths","-")}
+
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div style="
+        background:#E0F7FA;
+        border-left:5px solid #0EA5E9;
+        padding:15px;
+        border-radius:8px;
+        margin-top:12px;
+        margin-bottom:12px;
+        ">
+
+        <b>Weaknesses</b><br>
+        {result.get("weaknesses","-")}
+
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div style="
+        background:#ECFEFF;
+        border-left:5px solid #22D3EE;
+        padding:15px;
+        border-radius:8px;
+        margin-top:12px;
+        margin-bottom:12px;
+        ">
+
+        <b>Improvement Suggestion</b><br>
+        {result.get("improvement_suggestion","-")}
+
+        </div>
+        """, unsafe_allow_html=True)
 
         if result.get("corrected_version"):
-            with st.expander("✨ View Corrected Version"):
+            with st.container(border=True):
+                st.write("**AI Corrected Version**")
                 st.write(result.get("corrected_version"))
 
         # Simpan ke Database
@@ -97,4 +201,5 @@ if st.button("✨ Analyze Writing", use_container_width=True):
             overall_score=score,
             feedback_json=json.dumps(result),
         )
-        st.toast("Hasil evaluasi berhasil disimpan ke Database!")
+        
+        st.toast("Writing evaluation saved successfully!")
