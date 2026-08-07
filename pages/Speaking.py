@@ -196,7 +196,7 @@ if audio_file is not None:
                 st.write("**Transcript**")
                 st.info(f'"{result.get("transcript", "-")}"')
             
-            st.writen("**Skill Breakdown**")
+            st.write("**Skill Breakdown**")
             tab1, tab2, tab3, tab4 = st.tabs(["Fluency", "Pronunciation", "Grammar", "Vocabulary"])
 
             with tab1:
