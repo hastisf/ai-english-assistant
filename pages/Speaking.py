@@ -327,7 +327,7 @@ if audio_file is not None:
                 use_container_width=True
             )
 
-            col1, col2 = st.columns(2)
+            col1, col2 = st.columns(2, gap="small")
             
             with col1:
                 st.markdown(f"**Fluency**  \n{fluency_score}")
@@ -335,7 +335,7 @@ if audio_file is not None:
             with col2:
                 st.markdown(f"**Pronunciation**  \n{pronunciation_score}")
                 
-            col3, col4 = st.columns(2)
+            col3, col4 = st.columns(2, gap="small")
 
             with col3:
                 st.markdown(f"**Grammar**  \n{grammar_score}")
