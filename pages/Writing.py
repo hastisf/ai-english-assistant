@@ -14,16 +14,43 @@ color:#0F172A;
 🖋️ Writing Evaluation
 </h2>
 
-<div style="
-width:90px;
-height:5px;
-border-radius:999px;
-background:linear-gradient(90deg,#1D4ED8,#22D3EE);
-margin-bottom:20px;
-"></div>
 """, unsafe_allow_html=True)
 
 st.caption("Receive AI-powered feedback to improve your English writing skills.")
+
+st.markdown("""
+<style>
+
+/* Evaluate Button */
+div.stButton > button {
+    background: linear-gradient(90deg, #1D4ED8, #22D3EE);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+div.stButton > button:hover {
+    background: linear-gradient(90deg, #2563EB, #06B6D4)
+    color: white;
+}
+
+div.stButton > button:active {
+    background: linear-gradient(90deg, #1D4ED8, #22D3EE);
+    color: white;
+    transform: scale(0.98);
+}
+
+div.stButton > button:focus,
+div.stButton > button:focus-visible {
+    outline: none;
+    border-color: #22D3EE;
+    box-shadow: 0 0 0 0.2rem rgba(34, 211, 238, 0.35);
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 cefr_level = st.selectbox("CEFR Level", ["A1", "A2", "B1", "B2", "C1", "C2"])
 writing_type = st.selectbox(
