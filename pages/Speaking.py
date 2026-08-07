@@ -14,6 +14,32 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
+<style>
+
+/* Evaluate Button */
+div.stButton > button {
+    background: linear-gradient(90deg, #1D4ED8, #22D3EE);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+div.stButton > button:hover {
+    background: #1D4ED8;
+    color: white;
+}
+
+div.stButton > button:active {
+    background: #1E40AF;
+    color: white;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 audio_file = st.audio_input("Record your speaking")
 
 if audio_file is not None:
@@ -21,7 +47,6 @@ if audio_file is not None:
 
     if st.button(
     "✨ Evaluate Speaking",
-    type="primary",
     use_container_width=True,
     ):
         
