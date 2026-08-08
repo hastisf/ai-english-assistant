@@ -6,7 +6,7 @@
 
 **An AI-powered English practice app for evaluating and improving speaking and writing skills.**
 
-🚀 **Live Demo:** [swim-ai-english-assistant.streamlit.app](https://swim-ai-english-assistant.streamlit.app)
+**Live Demo:** [swim-ai-english-assistant.streamlit.app](https://swim-ai-english-assistant.streamlit.app)
 
 </div>
 
@@ -20,7 +20,7 @@ The application uses AI to evaluate user responses and provide structured feedba
 
 ## Features
 
-### 🎙️ Speaking Evaluation
+### Speaking Evaluation
 
 * Record or upload an English speech
 * Generate speech transcription
@@ -29,7 +29,7 @@ The application uses AI to evaluate user responses and provide structured feedba
 * Receive personalized strengths, weaknesses, and improvement suggestions
 * View proficiency level based on the overall score
 
-### ✍️ Writing Evaluation
+### Writing Evaluation
 
 * Submit English writing directly in the app
 * Select CEFR level and writing type
@@ -37,7 +37,7 @@ The application uses AI to evaluate user responses and provide structured feedba
 * Receive structured feedback and improvement suggestions
 * Get an overall writing score
 
-### 📚 Evaluation History
+### Evaluation History
 
 * Save previous speaking and writing evaluations
 * Review past scores and feedback
@@ -57,14 +57,20 @@ The application uses AI to evaluate user responses and provide structured feedba
 ```text
 SWIM/
 │
-├── app.py
+├── Home.py
 ├── pages/
-│   ├── 1_Speaking.py
-│   ├── 2_Writing.py
-│   └── 3_History.py
+│   ├── Speaking.py
+│   ├── Writing.py
+│   └── History.py
 │
 ├── modules/
 │   └── database.py
+│   └── gemini_client.py
+│   └── prompts.py
+│   └── sidebar.py
+│   └── speaking.py
+│   └── utils.py
+│   └── writing.py
 │
 ├── database/
 │   └── history.db
@@ -72,8 +78,7 @@ SWIM/
 ├── assets/
 │   └── swim.png
 │
-├── .streamlit/
-│   └── config.toml
+├── test_gemini.py
 │
 ├── requirements.txt
 └── README.md
