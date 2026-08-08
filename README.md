@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/swim.png" alt="SWIM Logo" width="90">
+<img src="assets/swim.png" alt="SWIM Logo" width="120">
 
 ### SWIM — Speaking & Writing Improvement Mate
 
