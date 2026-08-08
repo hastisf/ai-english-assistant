@@ -7,8 +7,8 @@ def render_sidebar():
         st.markdown(
             """
             <div style="
-                margin-top:30px;
-                margin-bottom:20px;
+                margin-top:-5px;
+                margin-bottom:15px;
             ">
                 <div style="
                     font-size:20px;
@@ -21,7 +21,7 @@ def render_sidebar():
                 <div style="
                     font-size:12px;
                     color:#64748B;
-                    margin-top:3px;
+                    margin-top:8px;
                     line-height:1.4;
                 ">
                     Speaking & Writing Improvement Mate
