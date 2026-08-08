@@ -34,6 +34,9 @@ if rows:
           "Created At",
       ],
   )
+    
+  st.write("")
+    
   st.dataframe(df, use_container_width=True)
 
   # Export to CSV
