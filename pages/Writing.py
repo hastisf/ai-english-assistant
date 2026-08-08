@@ -15,7 +15,7 @@ st.markdown(
 </h2>
     
 <div style="
-width:183px;
+width:181px;
 height:6px;
 border-radius:999px;
 background:linear-gradient(90deg,#1D4ED8,#22D3EE);
