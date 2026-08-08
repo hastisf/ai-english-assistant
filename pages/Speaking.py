@@ -2,9 +2,13 @@ import json
 import time
 import streamlit as st
 import plotly.graph_objects as go
+
 from google.genai import types
 from modules.database import save_evaluation
 from modules.gemini_client import MODEL, client
+from modules.sidebar import render_sidebar
+
+render_sidebar()
 
 st.markdown(
     """
