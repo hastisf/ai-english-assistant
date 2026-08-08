@@ -2,8 +2,11 @@ import json
 import time
 import plotly.graph_objects as go
 import streamlit as st
-from modules.database import save_evaluation  # Akan dibuat di langkah DB
+from modules.database import save_evaluation  
 from modules.writing import evaluate_writing
+from modules.sidebar import render_sidebar
+
+render_sidebar()
 
 st.markdown(
 """
