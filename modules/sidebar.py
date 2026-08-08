@@ -4,9 +4,9 @@ import streamlit as st
 
 def render_sidebar():
     with st.sidebar:
-        # Trik pendorong agar berada di paling bawah sidebar
+        # Pendorong ke bagian bawah
         st.markdown(
-            "<div style='flex-grow: 1; height: 35vh;'></div>",
+            "<div style='flex-grow: 1; height: 30vh;'></div>",
             unsafe_allow_html=True,
         )
 
@@ -16,7 +16,7 @@ def render_sidebar():
                 padding-top: 15px;
                 margin-top: 20px;
             ">
-                <!-- Teks SWIM Gradasi Biru -->
+                <!-- Teks SWIM Gradasi -->
                 <div style="
                     font-size: 22px;
                     font-weight: 800;
@@ -29,22 +29,12 @@ def render_sidebar():
                 </div>
 
                 <!-- Subtitle -->
-                <div style="
-                    font-size: 11px;
-                    color: #64748B;
-                    margin-top: 4px;
-                    font-weight: 500;
-                    line-height: 1.3;
-                ">
+                <div style="font-size: 11px; color: #64748B; margin-top: 4px; font-weight: 500; line-height: 1.3;">
                     Speaking & Writing Improvement Mate
                 </div>
 
                 <!-- Copyright -->
-                <div style="
-                    font-size: 10px;
-                    color: #94A3B8;
-                    margin-top: 12px;
-                ">
+                <div style="font-size: 10px; color: #94A3B8; margin-top: 12px;">
                     © 2026 SWIM. All rights reserved.
                 </div>
             </div>
