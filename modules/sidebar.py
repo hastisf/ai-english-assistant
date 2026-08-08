@@ -4,13 +4,48 @@ import streamlit as st
 
 def render_sidebar():
     with st.sidebar:
+        # Trik pendorong agar berada di paling bawah sidebar
+        st.markdown(
+            "<div style='flex-grow: 1; height: 35vh;'></div>",
+            unsafe_allow_html=True,
+        )
+
         html_content = textwrap.dedent("""
-            <div style="margin-top:-5px; margin-bottom:15px;">
-                <div style="font-size:20px; font-weight:700; color:#0F172A;">
+            <div style="
+                border-top: 1px solid #E2E8F0;
+                padding-top: 15px;
+                margin-top: 20px;
+            ">
+                <!-- Teks SWIM Gradasi Biru -->
+                <div style="
+                    font-size: 22px;
+                    font-weight: 800;
+                    background: linear-gradient(90deg, #1D4ED8 0%, #06B6D4 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    letter-spacing: 0.5px;
+                ">
                     SWIM
                 </div>
-                <div style="font-size:12px; color:#64748B; margin-top:8px; line-height:1.4;">
+
+                <!-- Subtitle -->
+                <div style="
+                    font-size: 11px;
+                    color: #64748B;
+                    margin-top: 4px;
+                    font-weight: 500;
+                    line-height: 1.3;
+                ">
                     Speaking & Writing Improvement Mate
+                </div>
+
+                <!-- Copyright -->
+                <div style="
+                    font-size: 10px;
+                    color: #94A3B8;
+                    margin-top: 12px;
+                ">
+                    © 2026 SWIM. All rights reserved.
                 </div>
             </div>
         """)
