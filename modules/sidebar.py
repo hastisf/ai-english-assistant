@@ -19,7 +19,6 @@ def render_sidebar():
                 ">
                     SWIM
                 </div>
-
                 <div style="
                     font-size:12px;
                     color:#64748B;
