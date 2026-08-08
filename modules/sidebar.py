@@ -20,7 +20,7 @@ def render_sidebar():
         Speaking & Writing Improvement Mate
     </div>
     <div style="font-size: 10px; color: #94A3B8; margin-top: 12px;">
-        © 2026 SWIM. All rights reserved.
+        © 2026 SWIM • Developed by Hastisf.
     </div>
 </div>
         """)
