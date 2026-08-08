@@ -70,6 +70,9 @@ if audio_file is not None:
     "✨ Evaluate Speaking",
     use_container_width=True,
     ):
+        if audio_file is None:
+            st.warning("Please record your speaking first.")
+            st.stop()
         
         # -----------------------------------------------------------------
         # BLOOMING ANIMATION LOADING
@@ -418,7 +421,7 @@ if audio_file is not None:
                 
             st.toast("Speaking evaluation saved successfully!")
         
-        except Exception as e:
+        except Exception:
             loading_text.empty()
             progress_bar.empty()
-            st.error(f"An error occurred during evaluation: {e}")
+            st.error("Evaluation failed. Please try again.")
