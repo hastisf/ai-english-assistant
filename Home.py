@@ -1,6 +1,10 @@
 from PIL import Image
 import streamlit as st
 
+from modules.sidebar import render_sidebar
+
+render_sidebar()
+
 # ==========================================
 # Load Logo
 # ==========================================
