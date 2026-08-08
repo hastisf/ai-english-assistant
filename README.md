@@ -2,7 +2,7 @@
 
 <img src="assets/swim.png" alt="SWIM Logo" width="90">
 
-# SWIM — Speaking & Writing Improvement Mate
+### SWIM — Speaking & Writing Improvement Mate
 
 **An AI-powered English practice app for evaluating and improving speaking and writing skills.**
 
