@@ -4,7 +4,7 @@ from modules.database import get_all_evaluations
 
 st.markdown(
     """
-    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
+    <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin:0 !important;padding:0 !important;'>
         Evaluation History
     </h2>
 
