@@ -1,6 +1,9 @@
 import pandas as pd
 import streamlit as st
 from modules.database import get_all_evaluations
+from modules.sidebar import render_sidebar
+
+render_sidebar()
 
 st.markdown(
     """
