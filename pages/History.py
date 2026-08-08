@@ -5,11 +5,22 @@ from modules.database import get_all_evaluations
 st.markdown(
     """
     <h2 style='font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem;'>
-        📜 Evaluation History
+        Evaluation History
     </h2>
-    """, 
+
+    <div style="
+        width:200px;
+        height:6px;
+        border-radius:999px;
+        background:linear-gradient(90deg,#1D4ED8,#22D3EE);
+        margin-top:2px;
+        margin-bottom:10px;
+    ">
+    </div>
+    """,
     unsafe_allow_html=True
 )
+
 rows = get_all_evaluations()
 
 if rows:
